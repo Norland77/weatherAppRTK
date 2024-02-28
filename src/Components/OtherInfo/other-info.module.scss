@@ -1,0 +1,45 @@
+.other {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.uvindex {
+  width: 50%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  > span {
+    font-size: 24px;
+  }
+  &__progress {
+    width: 100%;
+  }
+}
+
+.wind {
+  width: 50%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    > span {
+      font-size: 20px;
+    }
+  }
+}

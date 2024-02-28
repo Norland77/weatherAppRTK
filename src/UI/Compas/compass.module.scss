@@ -1,0 +1,105 @@
+$minWidth: 320;
+$maxWidth: 1920px;
+$maxWidthContainer: 1300;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
+
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
+  @if $type == 1 {
+    //тільки якщо менше контейнера
+    #{$property}: $startSize + px;
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize+px} + #{$addSize} * (100vw - #{$minWidth+px})/(#{$maxWidthContainer} - #{$minWidth}));
+    }
+  } @else if $type == 2 {
+    //Тільки якщо більше контейнера
+    #{$property}: $startSize + px;
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize+px} + #{$addSize} * (100vw - #{$minWidth+px})/(#{$maxWidthContainer} - #{$minWidth}));
+    }
+  } @else {
+    //Завжди
+    #{$property}: calc(#{$minSize+px} + #{$addSize} * (100vw - #{$minWidth+px})/(#{$maxWidthContainer} - #{$minWidth}));
+  }
+}
+
+.compass {
+  width: 200px;
+  height: 200px;
+  @include adaptiv-value('width', 200, 100, 0);
+  @include adaptiv-value('height', 200, 100, 0);
+  position: relative;
+  border: 2px solid #333;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &_circle {
+    width: 80%;
+    height: 80%;
+    position: relative;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arrow {
+    position: relative;
+    padding-top: 5px;
+    box-sizing:border-box;
+    transform: rotate(20deg);
+    &__up {
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 70px solid #EF5052;
+      @include adaptiv-value('border-bottom-width', 70, 30, 0);
+      position: relative;
+    }
+    &__down {
+      width: 0;
+      transform: rotate(180deg);
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-bottom: 70px solid #F3F3F3;
+      @include adaptiv-value('border-bottom-width', 70, 30, 0);
+      position: relative;
+    }
+  }
+
+  &_label {
+    &_N {
+      position: absolute;
+      @include adaptiv-value('top', -20, -14, 0);
+      @include adaptiv-value('font-size', 14, 12, 0);
+      font-weight: bold;
+    }
+    &_S {
+      position: absolute;
+      @include adaptiv-value('bottom', -20, -14, 0);
+      @include adaptiv-value('font-size', 14, 12, 0);
+      font-weight: bold;
+    }
+    &_W {
+      position: absolute;
+      @include adaptiv-value('left', -20, -14, 0);
+      @include adaptiv-value('font-size', 14, 12, 0);
+      font-weight: bold;
+    }
+    &_E {
+      position: absolute;
+      @include adaptiv-value('right', -15, -10, 0);
+      @include adaptiv-value('font-size', 14, 12, 0);
+      font-weight: bold;
+    }
+  }
+}

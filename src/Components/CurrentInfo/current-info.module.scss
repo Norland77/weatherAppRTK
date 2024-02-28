@@ -1,0 +1,126 @@
+
+$minWidth: 320;
+$maxWidth: 1920px;
+$maxWidthContainer: 1300;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
+
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
+  @if $type == 1 {
+    //тільки якщо менше контейнера
+    #{$property}: $startSize + px;
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize+px} + #{$addSize} * (100vw - #{$minWidth+px})/(#{$maxWidthContainer} - #{$minWidth}));
+    }
+  } @else if $type == 2 {
+    //Тільки якщо більше контейнера
+    #{$property}: $startSize + px;
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize+px} + #{$addSize} * (100vw - #{$minWidth+px})/(#{$maxWidthContainer} - #{$minWidth}));
+    }
+  } @else {
+    //Завжди
+    #{$property}: calc(#{$minSize+px} + #{$addSize} * (100vw - #{$minWidth+px})/(#{$maxWidthContainer} - #{$minWidth}));
+  }
+}
+
+.cityList {
+  background-color: #34333D;
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+}
+
+.current {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 40%;
+  position: relative;
+  @media (max-width: 976px) {
+    width: 100%;
+  }
+  > div {
+    > input {
+      width: 100%;
+      height: 30px;
+      border: none;
+      border-radius: 25px;
+      background-color: #34333D;
+      background-image: url("../../img/icon/location.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      padding: 5px 5px 5px 45px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+    }
+    > div {
+
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    @include adaptiv-value('padding-top', 100, 0, 0);
+    @include adaptiv-value('padding-bottom', 50, 0, 0);
+    @include adaptiv-value('padding-right', 30, 0, 0);
+    @include adaptiv-value('padding-left', 30, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+  }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    @include adaptiv-value('gap', 15, 0, 0);
+    text-align: center;
+    align-items: center;
+    color: white;
+    &_temp {
+      font-weight: bold;
+      @include adaptiv-value('font-size', 56, 18, 0);
+    }
+    &_title {
+      @include adaptiv-value('font-size', 34, 18, 0);
+    }
+    &_desc {
+      @include adaptiv-value('font-size', 14, 12, 0);
+    }
+    &_city {
+      @include adaptiv-value('font-size', 34, 18, 0);
+      font-weight: bold;
+    }
+  }
+  &__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    @include adaptiv-value('gap', 20, 5, 0);
+    color: white;
+    text-align: left;
+    align-items: center;
+    @include adaptiv-value('margin-top', 30, 15, 0);
+    > div {
+      display: flex;
+      flex-direction: column;
+      @include adaptiv-value('padding', 10, 5, 0);
+      @include adaptiv-value('gap', 10, 5, 0);
+      border-radius: 15px;
+      background-color: rgba(#23262E, 0.8);
+      width: 100%;
+      height: 100%;
+      > p {
+        @include adaptiv-value('font-size', 12, 10, 0);
+      }
+    }
+    &_big {
+      @include adaptiv-value('font-size', 36, 18, 0);
+      font-weight: bold;
+    }
+  }
+}

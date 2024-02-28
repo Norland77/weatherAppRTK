@@ -1,0 +1,16 @@
+.body {
+  height: 15px;
+  background-image: linear-gradient(to right, #0ebe43, #70ac00, #9c9700, #bb7e00, #d16100, #e2501a, #f2372f, #ff0046, #ff006b, #ff0094, #ff00c3, #ff07f5);
+  border-radius: 15px;
+  position: relative;
+}
+
+.point {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: -30%;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid black;
+}

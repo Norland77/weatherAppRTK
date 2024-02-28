@@ -1,0 +1,40 @@
+.tandays {
+  padding: 20px 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  color: white;
+  &__body {
+    padding-top: 25px;
+    margin-top: 15px;
+    border-top: 1px solid aliceblue;
+    display: flex;
+    gap: 10px;
+    overflow: auto;
+  }
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 15px;
+    transition-duration: .3s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transition-duration: .3s;
+    }
+    > img {
+      width: 50px;
+    }
+    >span {
+      font-size: 16px;
+    }
+  }
+}
+
+.data {
+  color: darkgray;
+}
